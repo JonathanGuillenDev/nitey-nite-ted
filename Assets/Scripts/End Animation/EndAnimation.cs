@@ -11,7 +11,7 @@ public class EndAnimation : MonoBehaviour {
 	public Image slideImage;
 
 	public List<Sprite> Sequence = new List<Sprite>();
-	public float displayTime = 2.5f;
+	public float displayTime = 0.7f;
 	private int currentSlide = 0;
 	private int effectSlide = 8;
 
@@ -28,18 +28,18 @@ public class EndAnimation : MonoBehaviour {
 	IEnumerator Slideshow(){
 		yield return new WaitForSeconds(displayTime);
 		currentSlide++;
-		iTween.CameraFadeTo(1,0.5f);
+	//	iTween.CameraFadeTo(1,0.3f);
 
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.3f);
 		slideImage.sprite = Sequence[currentSlide];
-		iTween.CameraFadeTo(0,0.5f);
+		iTween.CameraFadeTo(0,0.3f);
 
 		if(currentSlide == effectSlide)
 			effectImage.enabled = false;
 
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.3f);
 		if(currentSlide >= Sequence.Count - 1){
-			yield return new WaitForSeconds(5);
+			yield return new WaitForSeconds(3);
 			iTween.CameraFadeTo(1,2);
 			yield return new WaitForSeconds(2);
 			SceneManager.LoadScene("Credits");
